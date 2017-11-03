@@ -1,0 +1,76 @@
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script>
+      document.onkeydown = checkKey;
+ 
+      function checkKey(e) {
+ 
+          e = e || window.event;
+ 
+          if (e.keyCode == '38') {
+              // up arrow
+              $.ajax({
+                type: "POST",
+                url: "/1",
+                context: document.body
+              }).done(function() {});
+          }
+          else if (e.keyCode == '40') {
+              // down arrow
+              $.ajax({
+                type: "POST",
+                url: "/2",
+                context: document.body
+              }).done(function() {});
+          }
+          else if (e.keyCode == '37') {
+             // left arrow
+             $.ajax({
+                type: "POST",
+                url: "/3",
+                context: document.body
+              }).done(function() {});
+          }
+          else if (e.keyCode == '39') {
+             // right arrow
+             $.ajax({
+                type: "POST",
+                url: "/4",
+                context: document.body
+              }).done(function() {});
+          }
+ 
+      }
+    </script>
+  </head>
+  <body>
+  <h1> Video Feed</h1>
+  <img src="{{ url_for('camera') }}">
+  <center>
+  <br>
+  <br>
+  <br>
+  <form action="/1" method="POST"target="hidden-form">
+    <input type="submit" value="Forwards">
+  </form>
+  <form action="/2" method="POST"target="hidden-form">
+    <input type="submit" value="Left">
+  </form>
+  <form action="/3" method="POST"target="hidden-form">
+    <input type="submit" value="Right">
+  </form>
+  <form action="/4" method="POST"target="hidden-form">
+    <input type="submit" value="Backwards">
+  </form>
+   <form action="/5" method="POST"target="hidden-form">
+    <input type="submit" value="Hand Open">
+  </form>
+  <form action="/6" method="POST"target="hidden-form">
+    <input type="submit" value="Hand Close">
+  </form>
+  </center>
+ 
+  <IFRAME style="display:none" name="hidden-form"></IFRAME>  
+  </body>
+</html>
