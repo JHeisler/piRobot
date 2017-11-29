@@ -40,37 +40,60 @@
                 context: document.body
               }).done(function() {});
           }
- 
+          else if (e.keyCode == '81') {
+             // right arrow
+             $.ajax({
+                type: "POST",
+                url: "/5",
+                context: document.body
+              }).done(function() {});
+          }
+          else if (e.keyCode == '69') {
+             // right arrow
+             $.ajax({
+                type: "POST",
+                url: "/6",
+                context: document.body
+              }).done(function() {});
+          }
+          else if (e.keyCode == '82') {
+             // right arrow
+             $.ajax({
+                type: "POST",
+                url: "/7",
+                context: document.body
+              }).done(function() {});
+          }
       }
     </script>
   </head>
+
   <body>
-  <h1> Video Feed</h1>
-  <img src="{{ url_for('camera') }}">
-  <center>
-  <br>
-  <br>
-  <br>
-  <form action="/1" method="POST"target="hidden-form">
-    <input type="submit" value="Forwards">
-  </form>
-  <form action="/2" method="POST"target="hidden-form">
-    <input type="submit" value="Left">
-  </form>
-  <form action="/3" method="POST"target="hidden-form">
-    <input type="submit" value="Right">
-  </form>
-  <form action="/4" method="POST"target="hidden-form">
-    <input type="submit" value="Backwards">
-  </form>
-   <form action="/5" method="POST"target="hidden-form">
-    <input type="submit" value="Hand Open">
-  </form>
-  <form action="/6" method="POST"target="hidden-form">
-    <input type="submit" value="Hand Close">
-  </form>
-  </center>
- 
+  	<h1> Video Feed</h1>
+  	<img src="{{ url_for('camera') }}" style:"width:50%">
+
+	<span style="display:inline-block;">
+  	<form action="/1" method="POST"target="hidden-form" style="height: 20px; width: 20px">
+    		<input type="submit" value="Forwards (W)">
+  	</form>
+  	<form action="/2" method="POST"target="hidden-form" style="height: 20px; width: 20px">
+    		<input type="submit" value="Left  (A)">
+  	</form>
+  	<form action="/3" method="POST"target="hidden-form" style="height: 20px; width: 20px">
+    		<input type="submit" value="Right (D)">
+  	</form>
+  	<form action="/4" method="POST"target="hidden-form" style="height: 20px; width: 20px">
+    		<input type="submit" value="Backwards (S)">
+  	</form>
+   	<form action="/5" method="POST"target="hidden-form" style="height: 20px; width: 20px">
+    		<input type="submit" value="Hand Open (Q)">
+  	</form>
+  	<form action="/6" method="POST"target="hidden-form" style="height: 20px; width: 20px">
+    		<input type="submit" value="Hand Close (E)">
+  	</form>
+        <form action="/7" method="POST"target="hidden-form" style="height: 20px; width: 20px">
+    		<input type="submit" value="Stop (R)">
+  	</form>
   <IFRAME style="display:none" name="hidden-form"></IFRAME>  
   </body>
 </html>
