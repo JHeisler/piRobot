@@ -1,4 +1,5 @@
 import sys
+import time
 from importlib import import_module
 import os
 from flask import Flask, render_template, request, redirect, url_for, make_response, Response
@@ -38,7 +39,6 @@ def gen(camera):
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
-
 #shows index.html when root IP is selected
 @app.route('/')
 def index():
@@ -56,20 +56,47 @@ def rerout(pinpath):
     servo = int(pinpath)
 
     if servo == 1:
-        print "hello"
-        pwm.set_pwm(0,0,servo_max)
+        print('Forwards')
+        pwm.set_pwm(0,0,servo_min)
+        pwm.set_pwm(1,0,servo_max)
+
     elif servo == 2:
+        print('Backwards')
+        pwm.set_pwm(1,0,servo_max)
         pwm.set_pwm(0,0,0)
+
     elif servo == 3:
-        pwm.set_pwm(0,0,0)
+        print('Left')
+        pwm.set_pwm(0,0,servo_max)
+        pwm.set_pwm(1,0,0)
+
     elif servo == 4:
-        pwm.set_pwm(0,0,0)
+        print('Right')
+        pwm.set_pwm(0,0,servo_max)
+        pwm.set_pwm(1,0,servo_min)
+
     elif servo == 5:
-        pwm.set_pwm(0,0,0)
+        print('Hand Open')
+        pwm.set_pwm(2,0,155)
+        time.sleep(1)
+        pwm.set_pwm(2,0,0)
+
     elif servo == 6:
+        print('Hand Close')
+        pwm.set_pwm(2,0,420)
+        time.sleep(1)
+        pwm.set_pwm(2,0,0)
+
+    elif servo == 7:
+        print('Stop')
         pwm.set_pwm(0,0,0)
+        pwm.set_pwm(1,0,0)
+        pwm.set_pwm(2,0,0)
     else:
-        print(path)
+        print('Stop')
+        pwm.set_pwm(0,0,0)
+        pwn.set_pwn(1,0,0)
+        pwm.set_pwm(2,0,0)
 
     response = make_response(redirect(url_for('index')))
     return(response)
